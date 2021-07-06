@@ -29,10 +29,13 @@ class DataManager {
     private func getData<T: Decodable>(fromPath path: String, asType type: T.Type, completion: @escaping (T) -> ()) {
         guard let url = URL(string: "https://ressipy.fly.dev/api\(path)") else { return }
         
+        let decoder = JSONDecoder()
+        decoder.userInfo[CodingUserInfoKey.managedObjectContext] = StorageProvider.shared.persistentContainer.viewContext
+        
         URLSession.shared.dataTaskPublisher(for: url)
             .receive(on: DispatchQueue.main)
             .tryMap(handleOutput)
-            .decode(type: type, decoder: JSONDecoder())
+            .decode(type: type, decoder: decoder)
             .sink { completion in
                 switch completion {
                 case .finished:

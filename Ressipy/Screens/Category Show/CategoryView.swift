@@ -14,9 +14,9 @@ struct CategoryView: View {
     var body: some View {
         ZStack {
             List {
-                ForEach(vm.category?.recipes ?? []) { recipe in
-                    NavigationLink(destination: RecipeView(vm: RecipeViewModel(slug: recipe.slug))) {
-                        Text(recipe.name)
+                ForEach(vm.category?.recipeArray ?? []) { recipe in
+                    NavigationLink(destination: RecipeView(vm: RecipeViewModel(slug: recipe.slug!))) {
+                        Text(recipe.name!)
                     }
                     .id(recipe.id)
                 }
