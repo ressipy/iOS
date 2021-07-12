@@ -17,6 +17,7 @@ class StorageProvider {
         ValueTransformer.setValueTransformer(InstructionTransformer(), forName: NSValueTransformerName("InstructionTransformer"))
         
         persistentContainer = NSPersistentContainer(name: "Model")
+        persistentContainer.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
         persistentContainer.loadPersistentStores(completionHandler: { description, error in
             if let error = error {
                 fatalError("Core Data store failed to load with error: \(error)")

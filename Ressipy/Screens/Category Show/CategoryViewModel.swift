@@ -15,10 +15,10 @@ class CategoryViewModel: ObservableObject {
     func getCategory(slug: String) {
         guard category == nil && !isLoading else { return }
         
-        DataManager.shared.getCategory(slug: slug) { [weak self] categoryResult in
+        DataManager.shared.getCategory(slug: slug) { [weak self] category in
             guard let self = self else { return }
             
-            self.category = categoryResult.category
+            self.category = category
             self.isLoading = false
         }
     }

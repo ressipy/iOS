@@ -16,9 +16,9 @@ struct CategoryListView: View {
                 List {
                     ForEach(vm.categories) { category in
                         NavigationLink(
-                            destination: CategoryView(slug: category.slug!),
+                            destination: CategoryView(slug: category.slug),
                             label: {
-                                Text(category.name!)
+                                Text(category.name)
                             })
                             .id(category.slug)
                     }

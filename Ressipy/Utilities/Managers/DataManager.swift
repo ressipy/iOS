@@ -14,47 +14,21 @@ class DataManager {
     
     private init() {}
     
-    func getCategory(slug: String, completion: @escaping (CategoryResult) -> ()) {
-        getData(fromPath: "/categories/\(slug)", asType: CategoryResult.self, completion: completion)
-    }
-    
-    func getCategoryList(completion: @escaping (CategoryListResult) -> ()) {
-        getData(fromPath: "/categories", asType: CategoryListResult.self, completion: completion)
-    }
-    
-    func getRecipe(slug: String, completion: @escaping (RecipeResult) -> ()) {
-        getData(fromPath: "/recipes/\(slug)", asType: RecipeResult.self, completion: completion)
-    }
-    
-    private func getData<T: Decodable>(fromPath path: String, asType type: T.Type, completion: @escaping (T) -> ()) {
-        guard let url = URL(string: "https://ressipy.fly.dev/api\(path)") else { return }
-        
-        let decoder = JSONDecoder()
-        decoder.userInfo[CodingUserInfoKey.managedObjectContext] = StorageProvider.shared.persistentContainer.viewContext
-        
-        URLSession.shared.dataTaskPublisher(for: url)
-            .receive(on: DispatchQueue.main)
-            .tryMap(handleOutput)
-            .decode(type: type, decoder: decoder)
-            .sink { completion in
-                switch completion {
-                case .finished:
-                    print("Finished loading \(path)")
-                case .failure(let error):
-                    print("There was an error loading \(path): \(error)")
-                }
-            } receiveValue: { result in
-                completion(result)
-            }
-            .store(in: &cancellables)
-    }
-    
-    private func handleOutput(output: URLSession.DataTaskPublisher.Output) throws -> Data {
-        guard let response = output.response as? HTTPURLResponse,
-              response.statusCode >= 200 && response.statusCode < 300 else {
-            throw URLError(.badServerResponse)
+    func getCategory(slug: String, completion: @escaping (Category) -> ()) {
+        NetworkManager.shared.getCategory(slug: slug) { categoryResult in
+            completion(categoryResult.category)
         }
-        
-        return output.data
+    }
+    
+    func getCategoryList(completion: @escaping ([Category]) -> ()) {
+        NetworkManager.shared.getCategoryList() { categoryListResult in
+            completion(categoryListResult.categories)
+        }
+    }
+    
+    func getRecipe(slug: String, completion: @escaping (Recipe) -> ()) {
+        NetworkManager.shared.getRecipe(slug: slug) { recipeResult in
+            completion(recipeResult.recipe)
+        }
     }
 }

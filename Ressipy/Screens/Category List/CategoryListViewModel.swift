@@ -13,10 +13,10 @@ class CategoryListViewModel: ObservableObject {
     @Published var isLoading = true
     
     init() {
-        DataManager.shared.getCategoryList { [weak self] categoryListResult in
+        DataManager.shared.getCategoryList { [weak self] categories in
             guard let self = self else { return }
             
-            self.categories = categoryListResult.categories
+            self.categories = categories
             self.isLoading = false
         }
     }

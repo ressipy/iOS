@@ -27,10 +27,10 @@ class RecipeViewModel: ObservableObject {
         guard !isLoading, recipe == nil else { return }
         isLoading = true
         
-        DataManager.shared.getRecipe(slug: slug) { [weak self] recipeResult in
+        DataManager.shared.getRecipe(slug: slug) { [weak self] recipe in
             guard let self = self else { return }
             
-            self.recipe = recipeResult.recipe
+            self.recipe = recipe
             self.isLoading = false
         }
     }
