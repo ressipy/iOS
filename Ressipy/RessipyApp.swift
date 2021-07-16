@@ -9,6 +9,12 @@ import SwiftUI
 
 @main
 struct RessipyApp: App {
+    init() {
+        DispatchQueue.global(qos: .userInitiated).async {
+            DataImporter.shared.runImport()
+        }
+    }
+    
     var body: some Scene {
         WindowGroup {
             CategoryListView()

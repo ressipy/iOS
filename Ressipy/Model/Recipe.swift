@@ -20,3 +20,28 @@ struct Recipe: Decodable {
 extension Recipe: Identifiable {
     var id: String { return slug }
 }
+
+extension Recipe {
+    init(entity: RecipeEntity, includeCategory: Bool = false) {
+        author = entity.author
+        category = includeCategory ? Category(entity: entity.category!) : nil
+        ingredients = entity.ingredients
+        instructions = entity.instructions
+        name = entity.name!
+        slug = entity.slug!
+    }
+    
+    func toEntity(context: NSManagedObjectContext) -> RecipeEntity {
+        let entity = RecipeEntity(context: context)
+        
+        entity.author = author
+        entity.name = name
+        entity.ingredients = ingredients
+        entity.instructions = instructions
+        entity.slug = slug
+        
+        if let category = category { entity.category = category.toEntity(context: context) }
+        
+        return entity
+    }
+}

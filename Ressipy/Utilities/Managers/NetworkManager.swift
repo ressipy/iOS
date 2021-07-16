@@ -12,6 +12,7 @@ import os
 class NetworkManager {
     static let shared = NetworkManager()
     private let baseUrl = "https://ressipy.com/api"
+    private let logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "NetworkManager")
     var cancellables = Set<AnyCancellable>()
     
     lazy var decoder: JSONDecoder = {
@@ -35,20 +36,35 @@ class NetworkManager {
         getData(fromPath: "/recipes/\(slug)", asType: RecipeResult.self, completion: completion)
     }
     
-    private func getData<T: Decodable>(fromPath path: String, asType type: T.Type, completion: @escaping (T) -> ()) {
-        let logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "NetworkManager")
-        guard let url = URL(string: baseUrl + path) else { return }
+    func getSyncData(updatedAfter: String? = nil, completion: @escaping (ImporterResponse) -> ()) {
+        var params: [URLQueryItem]? = nil
+        
+        if let updatedAfter = updatedAfter {
+            params = [URLQueryItem(name: "updatedAfter", value: updatedAfter)]
+        }
+        
+        getData(fromPath: "/data", withParams: params, asType: ImporterResponse.self, completion: completion)
+    }
+    
+    private func getData<T: Decodable>(fromPath path: String, withParams params: [URLQueryItem]? = nil, asType type: T.Type, completion: @escaping (T) -> ()) {
+        var urlComponents = URLComponents(string: baseUrl + path)!
+        urlComponents.queryItems = params
+        
+        guard let url = urlComponents.url else { return }
         
         URLSession.shared.dataTaskPublisher(for: url)
             .receive(on: DispatchQueue.main)
             .tryMap(handleOutput)
             .decode(type: type, decoder: decoder)
-            .sink { completion in
+            .sink { [weak self] completion in
+                guard let self = self else { return }
+                
                 switch completion {
                 case .finished:
-                    logger.info("Successfully loaded \(path)")
+                    self.logger.info("Successfully loaded \(path)")
                 case .failure(let error):
-                    logger.warning("There was an error loading \(path): \(String(describing: error))")
+                    print(error)
+                    self.logger.warning("There was an error loading \(path): \(String(describing: error))")
                 }
             } receiveValue: { result in
                 completion(result)

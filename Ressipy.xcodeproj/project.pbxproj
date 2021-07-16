@@ -18,6 +18,7 @@
 		D731CF8A26951F920037E1F9 /* CodingUserInfoKey+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = D731CF8926951F920037E1F9 /* CodingUserInfoKey+Ext.swift */; };
 		D731CF8D26951FCE0037E1F9 /* DecoderConfigurationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D731CF8C26951FCE0037E1F9 /* DecoderConfigurationError.swift */; };
 		D731CF9326963EB50037E1F9 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D731CF9226963EB50037E1F9 /* NetworkManager.swift */; };
+		D7375762269E616B00B6A14E /* DataImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7375761269E616B00B6A14E /* DataImporter.swift */; };
 		D7BD0C6C2693A45500BC3648 /* CategoryListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BD0C6B2693A45500BC3648 /* CategoryListViewModel.swift */; };
 		D7BD0C6E2693A8A700BC3648 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BD0C6D2693A8A700BC3648 /* Category.swift */; };
 		D7BD0C702693A98E00BC3648 /* CategoryListResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BD0C6F2693A98E00BC3648 /* CategoryListResult.swift */; };
@@ -48,6 +49,7 @@
 		D731CF8926951F920037E1F9 /* CodingUserInfoKey+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CodingUserInfoKey+Ext.swift"; sourceTree = "<group>"; };
 		D731CF8C26951FCE0037E1F9 /* DecoderConfigurationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecoderConfigurationError.swift; sourceTree = "<group>"; };
 		D731CF9226963EB50037E1F9 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		D7375761269E616B00B6A14E /* DataImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataImporter.swift; sourceTree = "<group>"; };
 		D7BD0C6B2693A45500BC3648 /* CategoryListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListViewModel.swift; sourceTree = "<group>"; };
 		D7BD0C6D2693A8A700BC3648 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		D7BD0C6F2693A98E00BC3648 /* CategoryListResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListResult.swift; sourceTree = "<group>"; };
@@ -118,11 +120,11 @@
 		D731CF8526951DA10037E1F9 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				D7BC309626A1FC71001615E2 /* Data */,
 				D731CF8B26951FC30037E1F9 /* Errors */,
 				D731CF8826951F830037E1F9 /* Extensions */,
 				D731CF8626951DCF0037E1F9 /* Managers */,
 				D731CF8726951E020037E1F9 /* Transformers */,
-				D731CF832695076D0037E1F9 /* StorageProvider.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -159,6 +161,15 @@
 				D731CF8C26951FCE0037E1F9 /* DecoderConfigurationError.swift */,
 			);
 			path = Errors;
+			sourceTree = "<group>";
+		};
+		D7BC309626A1FC71001615E2 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				D7375761269E616B00B6A14E /* DataImporter.swift */,
+				D731CF832695076D0037E1F9 /* StorageProvider.swift */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 		D7BD0C732693A9AB00BC3648 /* Model */ = {
@@ -298,6 +309,7 @@
 				D7BD0C882693C12A00BC3648 /* RecipeResult.swift in Sources */,
 				D719672F26939C54003544E0 /* RessipyApp.swift in Sources */,
 				D7BD0C6C2693A45500BC3648 /* CategoryListViewModel.swift in Sources */,
+				D7375762269E616B00B6A14E /* DataImporter.swift in Sources */,
 				D731CF82269502860037E1F9 /* Model.xcdatamodeld in Sources */,
 				D7BD0C802693B65500BC3648 /* RecipeViewModel.swift in Sources */,
 				D731CF7F2695024A0037E1F9 /* InstructionTransformer.swift in Sources */,
@@ -440,6 +452,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"Ressipy/Preview Content\"";
 				DEVELOPMENT_TEAM = QQWWMCLZJZ;
 				ENABLE_PREVIEWS = YES;
@@ -453,7 +466,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.ressipy.Ressipy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -463,6 +476,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"Ressipy/Preview Content\"";
 				DEVELOPMENT_TEAM = QQWWMCLZJZ;
 				ENABLE_PREVIEWS = YES;
@@ -476,7 +490,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.ressipy.Ressipy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

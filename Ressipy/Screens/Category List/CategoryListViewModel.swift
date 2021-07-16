@@ -13,11 +13,27 @@ class CategoryListViewModel: ObservableObject {
     @Published var isLoading = true
     
     init() {
-        DataManager.shared.getCategoryList { [weak self] categories in
+        NotificationCenter.default.addObserver(self, selector: #selector(contextObjectsDidChange(_:)), name: Notification.Name.NSManagedObjectContextObjectsDidChange, object: nil)
+        
+        loadCategories()
+    }
+    
+    @objc func contextObjectsDidChange(_ notification: Notification) {
+        loadCategories()
+    }
+    
+    func loadCategories() {
+        DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
             
-            self.categories = categories
-            self.isLoading = false
+            self.isLoading = true
+            
+            DataManager.shared.getCategoryList { [weak self] categories in
+                guard let self = self else { return }
+                
+                self.categories = categories
+                self.isLoading = false
+            }
         }
     }
 }

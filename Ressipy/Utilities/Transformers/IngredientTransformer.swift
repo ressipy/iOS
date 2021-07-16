@@ -10,11 +10,12 @@ import UIKit
 class IngredientTransformer: ValueTransformer {
     // Convert an Ingredient to data for storage in our persistence layer
     override func transformedValue(_ value: Any?) -> Any? {
-        guard let image = value as? Ingredient else { return nil }
+        guard let ingredients = value as? [Ingredient] else { return nil }
         
         do {
-            return try NSKeyedArchiver.archivedData(withRootObject: image, requiringSecureCoding: true)
+            return try NSKeyedArchiver.archivedData(withRootObject: ingredients, requiringSecureCoding: false)
         } catch {
+            print("Failed to encode ingredient list - \(error)")
             return nil
         }
     }
@@ -24,8 +25,9 @@ class IngredientTransformer: ValueTransformer {
         guard let data = value as? Data else { return nil }
         
         do {
-            return try NSKeyedUnarchiver.unarchivedObject(ofClass: Ingredient.self, from: data)
+            return try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? [Ingredient]
         } catch {
+            print("Failed to decode ingredient list - \(error)")
             return nil
         }
     }

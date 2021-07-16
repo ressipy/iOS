@@ -6,6 +6,7 @@
 //
 
 import Combine
+import CoreData
 import Foundation
 
 class DataManager {
@@ -15,20 +16,27 @@ class DataManager {
     private init() {}
     
     func getCategory(slug: String, completion: @escaping (Category) -> ()) {
-        NetworkManager.shared.getCategory(slug: slug) { categoryResult in
-            completion(categoryResult.category)
-        }
+//        NetworkManager.shared.getCategory(slug: slug) { categoryResult in
+//            completion(categoryResult.category)
+//        }
+        let category = StorageProvider.shared.getCategory(slug: slug)!
+        completion(category)
     }
     
     func getCategoryList(completion: @escaping ([Category]) -> ()) {
-        NetworkManager.shared.getCategoryList() { categoryListResult in
-            completion(categoryListResult.categories)
-        }
+//        NetworkManager.shared.getCategoryList() { categoryListResult in
+//            completion(categoryListResult.categories)
+//        }
+        
+        let categories = StorageProvider.shared.getCategoryList()!
+        completion(categories)
     }
     
     func getRecipe(slug: String, completion: @escaping (Recipe) -> ()) {
-        NetworkManager.shared.getRecipe(slug: slug) { recipeResult in
-            completion(recipeResult.recipe)
-        }
+//        NetworkManager.shared.getRecipe(slug: slug) { recipeResult in
+//            completion(recipeResult.recipe)
+//        }
+        let recipe = StorageProvider.shared.getRecipe(slug: slug)!
+        completion(recipe)
     }
 }

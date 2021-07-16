@@ -10,11 +10,12 @@ import UIKit
 class InstructionTransformer: ValueTransformer {
     // Convert an Instruction to data for storage in our persistence layer
     override func transformedValue(_ value: Any?) -> Any? {
-        guard let image = value as? Instruction else { return nil }
+        guard let instructions = value as? [Instruction] else { return nil }
         
         do {
-            return try NSKeyedArchiver.archivedData(withRootObject: image, requiringSecureCoding: true)
+            return try NSKeyedArchiver.archivedData(withRootObject: instructions, requiringSecureCoding: false)
         } catch {
+            print("Failed to encode instruction list - \(error)")
             return nil
         }
     }
@@ -24,8 +25,9 @@ class InstructionTransformer: ValueTransformer {
         guard let data = value as? Data else { return nil }
         
         do {
-            return try NSKeyedUnarchiver.unarchivedObject(ofClass: Instruction.self, from: data)
+            return try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? [Instruction]
         } catch {
+            print("Failed to decode instruction list - \(error)")
             return nil
         }
     }
