@@ -24,13 +24,10 @@ extension Category {
         slug = entity.slug ?? ""
         
         if includeRecipes, let recipeEntities = entity.recipes {
-            var recipeArray = [Recipe]()
-            
-            for case let recipeEntity as RecipeEntity in recipeEntities  {
-                recipeArray.append(Recipe(entity: recipeEntity))
+            let sortDescriptors = [NSSortDescriptor(key: "slug", ascending: true, selector: #selector(NSString.caseInsensitiveCompare))]
+            recipes = recipeEntities.sortedArray(using: sortDescriptors).map { recipeEntity in
+                Recipe(entity: recipeEntity as! RecipeEntity)
             }
-            
-            recipes = recipeArray
         } else {
             recipes = nil
         }
