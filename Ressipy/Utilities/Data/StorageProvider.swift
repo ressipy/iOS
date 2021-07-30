@@ -87,4 +87,19 @@ extension StorageProvider {
             return nil
         }
     }
+    
+    func searchRecipes(_ query: String) -> [Recipe]? {
+        let context = persistentContainer.viewContext
+        let fetchRequest: NSFetchRequest<RecipeEntity> = RecipeEntity.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "name CONTAINS[cd] %@", query)
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
+        
+        do {
+            let recipeEntities = try context.fetch(fetchRequest)
+            return recipeEntities.map { Recipe(entity: $0) }
+        } catch {
+            print("Failed to search recipes: \(error)")
+            return nil
+        }
+    }
 }

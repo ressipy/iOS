@@ -17,7 +17,7 @@ struct RessipyApp: App {
     
     var body: some Scene {
         WindowGroup {
-            CategoryListView()
+            RessipyTabView()
                 .accentColor(.red)
         }
     }
