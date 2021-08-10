@@ -72,7 +72,13 @@ class NetworkManager {
         makeRequest(URLRequest(url: url), asType: ImporterResponse.self, completion: completion)
     }
     
-    private func makeRequest<T: Decodable>(_ request: URLRequest, asType type: T.Type, completion: @escaping (Result<T, NetworkError>) -> ()) {
+    private func makeRequest<T: Decodable>(_ baseRequest: URLRequest, asType type: T.Type, completion: @escaping (Result<T, NetworkError>) -> ()) {
+        var request = baseRequest
+        
+        if AuthManager.shared.isLoggedIn {
+            request.setValue("Bearer \(AuthManager.shared.token!)", forHTTPHeaderField: "Authorization")
+        }
+        
         URLSession.shared.dataTaskPublisher(for: request)
             .receive(on: DispatchQueue.main)
             .tryMap(handleOutput)
