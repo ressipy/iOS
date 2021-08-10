@@ -33,10 +33,21 @@
 		D7BD0C862693C11200BC3648 /* Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BD0C852693C11200BC3648 /* Instruction.swift */; };
 		D7BD0C882693C12A00BC3648 /* RecipeResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BD0C872693C12A00BC3648 /* RecipeResult.swift */; };
 		D7BD0C8E2693F2AB00BC3648 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BD0C8D2693F2AB00BC3648 /* DataManager.swift */; };
+		D7E7AFBF26C0BE5300F46AE2 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E7AFBE26C0BE5300F46AE2 /* LoginViewModel.swift */; };
+		D7E7AFC226C0C34300F46AE2 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E7AFC126C0C34300F46AE2 /* Alert.swift */; };
+		D7E7AFC426C0C47D00F46AE2 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E7AFC326C0C47D00F46AE2 /* String+Ext.swift */; };
+		D7E7AFC626C0CD3B00F46AE2 /* Credentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E7AFC526C0CD3B00F46AE2 /* Credentials.swift */; };
+		D7E7AFC826C0E2C200F46AE2 /* TokenResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E7AFC726C0E2C200F46AE2 /* TokenResult.swift */; };
+		D7E7AFCA26C0E94400F46AE2 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E7AFC926C0E94400F46AE2 /* AuthManager.swift */; };
+		D7E7AFCD26C216C700F46AE2 /* Permissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E7AFCC26C216C700F46AE2 /* Permissions.swift */; };
+		D7E7AFD226C2228400F46AE2 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E7AFD126C2228400F46AE2 /* AccountView.swift */; };
+		D7E7AFD426C22ED700F46AE2 /* AccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E7AFD326C22ED700F46AE2 /* AccountViewModel.swift */; };
+		D7E7AFD626C2327A00F46AE2 /* Notification+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E7AFD526C2327A00F46AE2 /* Notification+Ext.swift */; };
 		D7EA0A6726B38B170009AFEF /* RessipyTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7EA0A6626B38B170009AFEF /* RessipyTabView.swift */; };
 		D7EA0A6A26B38C410009AFEF /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7EA0A6926B38C410009AFEF /* SearchView.swift */; };
 		D7EA0A6C26B38C6A0009AFEF /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7EA0A6B26B38C6A0009AFEF /* SearchViewModel.swift */; };
 		D7EA0A6E26B3B6D30009AFEF /* View+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7EA0A6D26B3B6D30009AFEF /* View+Ext.swift */; };
+		D7EA0A7126B448B60009AFEF /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7EA0A7026B448B60009AFEF /* LoginView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,10 +79,22 @@
 		D7BD0C852693C11200BC3648 /* Instruction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Instruction.swift; sourceTree = "<group>"; };
 		D7BD0C872693C12A00BC3648 /* RecipeResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeResult.swift; sourceTree = "<group>"; };
 		D7BD0C8D2693F2AB00BC3648 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		D7E7AFBE26C0BE5300F46AE2 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		D7E7AFC126C0C34300F46AE2 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
+		D7E7AFC326C0C47D00F46AE2 /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
+		D7E7AFC526C0CD3B00F46AE2 /* Credentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Credentials.swift; sourceTree = "<group>"; };
+		D7E7AFC726C0E2C200F46AE2 /* TokenResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenResult.swift; sourceTree = "<group>"; };
+		D7E7AFC926C0E94400F46AE2 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
+		D7E7AFCB26C1A35200F46AE2 /* Ressipy.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Ressipy.entitlements; sourceTree = "<group>"; };
+		D7E7AFCC26C216C700F46AE2 /* Permissions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Permissions.swift; sourceTree = "<group>"; };
+		D7E7AFD126C2228400F46AE2 /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
+		D7E7AFD326C22ED700F46AE2 /* AccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewModel.swift; sourceTree = "<group>"; };
+		D7E7AFD526C2327A00F46AE2 /* Notification+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Ext.swift"; sourceTree = "<group>"; };
 		D7EA0A6626B38B170009AFEF /* RessipyTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RessipyTabView.swift; sourceTree = "<group>"; };
 		D7EA0A6926B38C410009AFEF /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		D7EA0A6B26B38C6A0009AFEF /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		D7EA0A6D26B3B6D30009AFEF /* View+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Ext.swift"; sourceTree = "<group>"; };
+		D7EA0A7026B448B60009AFEF /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +127,7 @@
 		D719672D26939C54003544E0 /* Ressipy */ = {
 			isa = PBXGroup;
 			children = (
+				D7E7AFCB26C1A35200F46AE2 /* Ressipy.entitlements */,
 				D7BD0C732693A9AB00BC3648 /* Model */,
 				D7BD0C762693AD4C00BC3648 /* Views */,
 				D7BD0C892693F25500BC3648 /* Screens */,
@@ -128,6 +152,7 @@
 		D731CF8526951DA10037E1F9 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				D7E7AFC026C0C33A00F46AE2 /* Alerts */,
 				D7BC309626A1FC71001615E2 /* Data */,
 				D731CF8B26951FC30037E1F9 /* Errors */,
 				D731CF8826951F830037E1F9 /* Extensions */,
@@ -140,6 +165,7 @@
 		D731CF8626951DCF0037E1F9 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				D7E7AFC926C0E94400F46AE2 /* AuthManager.swift */,
 				D7BD0C8D2693F2AB00BC3648 /* DataManager.swift */,
 				D731CF9226963EB50037E1F9 /* NetworkManager.swift */,
 			);
@@ -159,7 +185,9 @@
 			isa = PBXGroup;
 			children = (
 				D731CF8926951F920037E1F9 /* CodingUserInfoKey+Ext.swift */,
+				D7E7AFC326C0C47D00F46AE2 /* String+Ext.swift */,
 				D7EA0A6D26B3B6D30009AFEF /* View+Ext.swift */,
+				D7E7AFD526C2327A00F46AE2 /* Notification+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -186,11 +214,14 @@
 			children = (
 				D7BD0C6D2693A8A700BC3648 /* Category.swift */,
 				D7BD0C6F2693A98E00BC3648 /* CategoryListResult.swift */,
-				D7BD0C832693C0FA00BC3648 /* Ingredient.swift */,
 				D7BD0C7B2693AE2900BC3648 /* CategoryResult.swift */,
+				D7E7AFC526C0CD3B00F46AE2 /* Credentials.swift */,
+				D7BD0C832693C0FA00BC3648 /* Ingredient.swift */,
+				D7BD0C852693C11200BC3648 /* Instruction.swift */,
+				D7E7AFCC26C216C700F46AE2 /* Permissions.swift */,
 				D7BD0C812693B66200BC3648 /* Recipe.swift */,
 				D7BD0C872693C12A00BC3648 /* RecipeResult.swift */,
-				D7BD0C852693C11200BC3648 /* Instruction.swift */,
+				D7E7AFC726C0E2C200F46AE2 /* TokenResult.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -206,10 +237,12 @@
 		D7BD0C892693F25500BC3648 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				D7EA0A6826B38C350009AFEF /* Search */,
+				D7E7AFCE26C2226600F46AE2 /* Account */,
 				D7BD0C8A2693F26300BC3648 /* Category List */,
 				D7BD0C8B2693F27200BC3648 /* Category Show */,
+				D7EA0A6F26B4489F0009AFEF /* Login */,
 				D7BD0C8C2693F28900BC3648 /* Recipe Show */,
+				D7EA0A6826B38C350009AFEF /* Search */,
 				D7EA0A6626B38B170009AFEF /* RessipyTabView.swift */,
 			);
 			path = Screens;
@@ -242,6 +275,23 @@
 			path = "Recipe Show";
 			sourceTree = "<group>";
 		};
+		D7E7AFC026C0C33A00F46AE2 /* Alerts */ = {
+			isa = PBXGroup;
+			children = (
+				D7E7AFC126C0C34300F46AE2 /* Alert.swift */,
+			);
+			path = Alerts;
+			sourceTree = "<group>";
+		};
+		D7E7AFCE26C2226600F46AE2 /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				D7E7AFD126C2228400F46AE2 /* AccountView.swift */,
+				D7E7AFD326C22ED700F46AE2 /* AccountViewModel.swift */,
+			);
+			path = Account;
+			sourceTree = "<group>";
+		};
 		D7EA0A6826B38C350009AFEF /* Search */ = {
 			isa = PBXGroup;
 			children = (
@@ -249,6 +299,15 @@
 				D7EA0A6B26B38C6A0009AFEF /* SearchViewModel.swift */,
 			);
 			path = Search;
+			sourceTree = "<group>";
+		};
+		D7EA0A6F26B4489F0009AFEF /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				D7EA0A7026B448B60009AFEF /* LoginView.swift */,
+				D7E7AFBE26C0BE5300F46AE2 /* LoginViewModel.swift */,
+			);
+			path = Login;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -321,18 +380,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				D7EA0A6E26B3B6D30009AFEF /* View+Ext.swift in Sources */,
+				D7EA0A7126B448B60009AFEF /* LoginView.swift in Sources */,
 				D731CF9326963EB50037E1F9 /* NetworkManager.swift in Sources */,
+				D7E7AFC626C0CD3B00F46AE2 /* Credentials.swift in Sources */,
 				D719673126939C54003544E0 /* CategoryListView.swift in Sources */,
 				D731CF8A26951F920037E1F9 /* CodingUserInfoKey+Ext.swift in Sources */,
 				D7BD0C842693C0FA00BC3648 /* Ingredient.swift in Sources */,
 				D7BD0C862693C11200BC3648 /* Instruction.swift in Sources */,
 				D731CF8D26951FCE0037E1F9 /* DecoderConfigurationError.swift in Sources */,
+				D7E7AFBF26C0BE5300F46AE2 /* LoginViewModel.swift in Sources */,
+				D7E7AFD426C22ED700F46AE2 /* AccountViewModel.swift in Sources */,
 				D7BD0C882693C12A00BC3648 /* RecipeResult.swift in Sources */,
 				D719672F26939C54003544E0 /* RessipyApp.swift in Sources */,
 				D7EA0A6A26B38C410009AFEF /* SearchView.swift in Sources */,
 				D7BD0C6C2693A45500BC3648 /* CategoryListViewModel.swift in Sources */,
 				D7375762269E616B00B6A14E /* DataImporter.swift in Sources */,
 				D731CF82269502860037E1F9 /* Model.xcdatamodeld in Sources */,
+				D7E7AFD226C2228400F46AE2 /* AccountView.swift in Sources */,
 				D7BD0C802693B65500BC3648 /* RecipeViewModel.swift in Sources */,
 				D731CF7F2695024A0037E1F9 /* InstructionTransformer.swift in Sources */,
 				D7BD0C7E2693B64D00BC3648 /* RecipeView.swift in Sources */,
@@ -342,11 +406,17 @@
 				D7EA0A6726B38B170009AFEF /* RessipyTabView.swift in Sources */,
 				D731CF7D2694FDBE0037E1F9 /* IngredientTransformer.swift in Sources */,
 				D7BD0C752693AD2F00BC3648 /* LoadingView.swift in Sources */,
+				D7E7AFC226C0C34300F46AE2 /* Alert.swift in Sources */,
+				D7E7AFD626C2327A00F46AE2 /* Notification+Ext.swift in Sources */,
 				D7BD0C7C2693AE2900BC3648 /* CategoryResult.swift in Sources */,
 				D7BD0C782693AD7400BC3648 /* CategoryView.swift in Sources */,
 				D7BD0C822693B66200BC3648 /* Recipe.swift in Sources */,
+				D7E7AFCA26C0E94400F46AE2 /* AuthManager.swift in Sources */,
 				D7EA0A6C26B38C6A0009AFEF /* SearchViewModel.swift in Sources */,
+				D7E7AFC826C0E2C200F46AE2 /* TokenResult.swift in Sources */,
+				D7E7AFCD26C216C700F46AE2 /* Permissions.swift in Sources */,
 				D7BD0C7A2693AD8300BC3648 /* CategoryViewModel.swift in Sources */,
+				D7E7AFC426C0C47D00F46AE2 /* String+Ext.swift in Sources */,
 				D7BD0C702693A98E00BC3648 /* CategoryListResult.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -475,6 +545,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Ressipy/Ressipy.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"Ressipy/Preview Content\"";
@@ -499,6 +570,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Ressipy/Ressipy.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"Ressipy/Preview Content\"";

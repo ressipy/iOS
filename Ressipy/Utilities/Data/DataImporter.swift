@@ -52,33 +52,38 @@ class DataImporter {
     }
     
     func runImport() {
-        NetworkManager.shared.getSyncData(updatedAfter: self.lastSyncedAt) { [weak self] response in
+        NetworkManager.shared.getSyncData(updatedAfter: self.lastSyncedAt) { [weak self] result in
             guard let self = self else { return }
             
-            self.importContext.perform {
-                self.lastSyncedAt = response.fetchedAt
-                
-                let _ = response.categories.map { $0.toEntity(context: self.importContext) }
-                let _ = response.recipes.map { $0.toEntity(context: self.importContext) }
-                
-                let deletedRecipesPredicate = NSPredicate(format: "slug IN %@", response.deleted.recipes)
-                let deletedRecipesRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Recipe")
-                deletedRecipesRequest.predicate = deletedRecipesPredicate
-                let batchDeleteRecipes = NSBatchDeleteRequest(fetchRequest: deletedRecipesRequest)
-                
-                let deletedCategoriesPredicate = NSPredicate(format: "slug IN %@", response.deleted.categories)
-                let deletedCategoriesRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Category")
-                deletedCategoriesRequest.predicate = deletedCategoriesPredicate
-                let batchDeleteCategories = NSBatchDeleteRequest(fetchRequest: deletedCategoriesRequest)
-                
-                do {
-                    try self.importContext.execute(batchDeleteRecipes)
-                    try self.importContext.execute(batchDeleteCategories)
+            switch result {
+            case .success(let response):
+                self.importContext.perform {
+                    self.lastSyncedAt = response.fetchedAt
                     
-                    try self.importContext.save()
-                } catch {
-                    self.logger.error("Data import failed: \(String(describing: error))")
+                    let _ = response.categories.map { $0.toEntity(context: self.importContext) }
+                    let _ = response.recipes.map { $0.toEntity(context: self.importContext) }
+                    
+                    let deletedRecipesPredicate = NSPredicate(format: "slug IN %@", response.deleted.recipes)
+                    let deletedRecipesRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Recipe")
+                    deletedRecipesRequest.predicate = deletedRecipesPredicate
+                    let batchDeleteRecipes = NSBatchDeleteRequest(fetchRequest: deletedRecipesRequest)
+                    
+                    let deletedCategoriesPredicate = NSPredicate(format: "slug IN %@", response.deleted.categories)
+                    let deletedCategoriesRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Category")
+                    deletedCategoriesRequest.predicate = deletedCategoriesPredicate
+                    let batchDeleteCategories = NSBatchDeleteRequest(fetchRequest: deletedCategoriesRequest)
+                    
+                    do {
+                        try self.importContext.execute(batchDeleteRecipes)
+                        try self.importContext.execute(batchDeleteCategories)
+                        
+                        try self.importContext.save()
+                    } catch {
+                        self.logger.error("Data import failed: \(String(describing: error))")
+                    }
                 }
+            case .failure(let error):
+                self.logger.error("Data import failed: \(String(describing: error))")
             }
         }
     }

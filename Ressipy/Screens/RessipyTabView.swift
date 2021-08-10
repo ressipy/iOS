@@ -21,6 +21,12 @@ struct RessipyTabView: View {
                     Image(systemName: "magnifyingglass")
                     Text("Search")
                 }
+            
+            AccountView()
+                .tabItem {
+                    Image(systemName: "person")
+                    Text("Account")
+                }
         }
     }
 }
