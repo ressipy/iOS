@@ -52,8 +52,14 @@ extension StorageProvider {
         fetchRequest.returnsObjectsAsFaults = false
         
         do {
-            let categoryEntity = try context.fetch(fetchRequest)
-            return Category(entity: categoryEntity.first!, includeRecipes: true)
+            let result = try context.fetch(fetchRequest)
+            
+            if let entity = result.first {
+                return Category(entity: entity, includeRecipes: true)
+            }
+            
+            print("No category found with slug: \(slug)")
+            return nil
         } catch {
             print("Failed to fetch category: \(error)")
             return nil
@@ -80,8 +86,14 @@ extension StorageProvider {
         fetchRequest.predicate = NSPredicate(format: "slug = %@", slug)
         
         do {
-            let recipeEntity = try context.fetch(fetchRequest)
-            return Recipe(entity: recipeEntity.first!, includeCategory: true)
+            let result = try context.fetch(fetchRequest)
+            
+            if let entity = result.first {
+                return Recipe(entity: entity, includeCategory: true)
+            }
+            
+            print("No recipe found with slug: \(slug)")
+            return nil
         } catch {
             print("Failed to fetch category: \(error)")
             return nil
