@@ -8,17 +8,23 @@
 import Foundation
 import Combine
 
-class CategoryViewModel: ObservableObject {
+class CategoryViewModel: ObservableObject, NewRecipeViewModelDelegate {
     @Published var category: Category?
     @Published var isLoading = false
+    @Published var showNewRecipeButton = false
+    @Published var showNewRecipeForm = false
     
     init() {
-        NotificationCenter.default.addObserver(self, selector: #selector(contextObjectsDidChange(_:)), name: Notification.Name.NSManagedObjectContextObjectsDidChange, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(contextDidSave(_:)), name: Notification.Name.NSManagedObjectContextDidSave, object: nil)
+        
+        if AuthManager.shared.permissions?.createRecipe == true {
+            showNewRecipeButton = true
+        }
     }
     
     func getCategory(slug: String) {
         DispatchQueue.main.async {
-            guard self.category == nil && !self.isLoading else { return }
+            guard !self.isLoading else { return }
             
             DataManager.shared.getCategory(slug: slug) { [weak self] category in
                 guard let self = self else { return }
@@ -29,9 +35,22 @@ class CategoryViewModel: ObservableObject {
         }
     }
     
-    @objc func contextObjectsDidChange(_ notification: Notification) {
+    @objc func contextDidSave(_ notification: Notification) {
         if let slug = category?.slug {
             getCategory(slug: slug)
         }
+    }
+    
+    func didCreateRecipe(_ recipe: Recipe) {
+        if let slug = category?.slug {
+            getCategory(slug: slug)
+        }
+        
+        showNewRecipeForm = false
+    }
+    
+    func displayNewRecipeForm() {
+        if category == nil { return }
+        showNewRecipeForm = true
     }
 }

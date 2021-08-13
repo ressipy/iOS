@@ -20,8 +20,22 @@ struct CategoryView: View {
             }
         }
         .navigationTitle(vm.category?.name ?? "")
+        .navigationBarItems(trailing: vm.showNewRecipeButton ? AnyView(newRecipeButton) : AnyView(EmptyView()))
         .onAppear {
             vm.getCategory(slug: slug)
+        }
+        .sheet(isPresented: $vm.showNewRecipeForm) {
+            NewRecipeView(category: vm.category!, delegate: vm)
+        }
+    }
+    
+    var newRecipeButton: some View {
+        Button {
+            vm.displayNewRecipeForm()
+        } label: {
+            Image(systemName: "plus")
+                .foregroundColor(.accentColor)
+                .frame(width: 20, height: 20)
         }
     }
 }
@@ -31,21 +45,5 @@ struct CategoryView_Previews: PreviewProvider {
         NavigationView {
             CategoryView(slug: "appetizers")
         }
-    }
-}
-
-struct RecipeList: View {
-    let recipes: [Recipe]
-    
-    var body: some View {
-        List {
-            ForEach(recipes) { recipe in
-                NavigationLink(destination: RecipeView(vm: RecipeViewModel(slug: recipe.slug))) {
-                    Text(recipe.name)
-                }
-                .id(recipe.id)
-            }
-        }
-        .listStyle(PlainListStyle())
     }
 }

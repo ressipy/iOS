@@ -7,8 +7,8 @@
 
 import Foundation
 
-public class Instruction: NSObject, NSCoding, Decodable {
-    let text: String
+public class Instruction: NSObject, NSCoding, Codable {
+    var text: String
     
     required public init?(coder: NSCoder) {
         text = coder.decodeObject(forKey: "text") as! String

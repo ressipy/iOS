@@ -8,7 +8,7 @@
 import Foundation
 import CoreData
 
-struct Category: Decodable {
+struct Category: Codable {
     let name: String
     let recipes: [Recipe]?
     let slug: String

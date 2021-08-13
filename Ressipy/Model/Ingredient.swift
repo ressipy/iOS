@@ -7,9 +7,9 @@
 
 import Foundation
 
-public class Ingredient: NSObject, NSCoding, Decodable {
-    let amount: String
-    let name: String
+public class Ingredient: NSObject, NSCoding, Codable {
+    var amount: String
+    var name: String
     
     required public init?(coder: NSCoder) {
         amount = coder.decodeObject(forKey: "amount") as! String
@@ -28,5 +28,11 @@ public class Ingredient: NSObject, NSCoding, Decodable {
     
     static func == (lhs: Ingredient, rhs: Ingredient) -> Bool {
         lhs.amount == rhs.amount && lhs.name == rhs.name
+    }
+}
+
+extension Ingredient: Identifiable {
+    public var id: UUID {
+        UUID()
     }
 }

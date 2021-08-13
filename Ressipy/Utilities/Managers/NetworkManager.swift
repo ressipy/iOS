@@ -35,6 +35,17 @@ class NetworkManager {
     
     private init() {}
     
+    func createRecipe(recipe: Recipe, completion: @escaping (Result<RecipeWrapper, NetworkError>) -> ()) {
+        guard let url = URL(string: baseUrl + "/recipes") else { return }
+        let credentialsWrapper = RecipeWrapper(recipe: recipe)
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.httpBody = try! JSONEncoder().encode(credentialsWrapper)
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        makeRequest(request, asType: RecipeWrapper.self, completion: completion)
+    }
+    
     func createToken(credentials: Credentials, completion: @escaping (Result<TokenResult, NetworkError>) -> ()) {
         guard let url = URL(string: baseUrl + "/users/tokens") else { return }
         let credentialsWrapper = CredentialsWrapper(user: credentials)
@@ -56,9 +67,9 @@ class NetworkManager {
         makeRequest(URLRequest(url: url), asType: CategoryListResult.self, completion: completion)
     }
     
-    func getRecipe(slug: String, completion: @escaping (Result<RecipeResult, NetworkError>) -> ()) {
+    func getRecipe(slug: String, completion: @escaping (Result<RecipeWrapper, NetworkError>) -> ()) {
         guard let url = URL(string: baseUrl + "/recipes/\(slug)") else { return }
-        makeRequest(URLRequest(url: url), asType: RecipeResult.self, completion: completion)
+        makeRequest(URLRequest(url: url), asType: RecipeWrapper.self, completion: completion)
     }
     
     func getSyncData(updatedAfter: String? = nil, completion: @escaping (Result<ImporterResponse, NetworkError>) -> ()) {
@@ -103,9 +114,9 @@ class NetworkManager {
                 
                 switch result {
                 case .finished:
-                    self.logger.info("Successfully loaded \(request.url!.path)")
+                    self.logger.info("Successful request to \(request.httpMethod ?? "GET") \(request.url!.path)")
                 case .failure(let error):
-                    self.logger.warning("There was an error loading \(request.url!.path): \(String(describing: error))")
+                    self.logger.warning("Failed request to \(request.httpMethod ?? "GET") \(request.url!.path): \(String(describing: error))")
                     completion(.failure(error))
                 }
             } receiveValue: { result in

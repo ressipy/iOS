@@ -8,12 +8,39 @@
 import Combine
 import CoreData
 import Foundation
+import os
 
 class DataManager {
     static let shared = DataManager()
+    let updateContext: NSManagedObjectContext
     var cancellables = Set<AnyCancellable>()
+    private let logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "DataManager")
     
-    private init() {}
+    private init() {
+        updateContext = StorageProvider.shared.persistentContainer.newBackgroundContext()
+        updateContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
+    }
+    
+    func createRecipe(recipe: Recipe, completion: @escaping (Result<Recipe, NetworkError>) -> ()) {
+        NetworkManager.shared.createRecipe(recipe: recipe) { recipeResult in
+            switch recipeResult {
+            case .success(let recipeWrapper):
+                self.updateContext.perform {
+                    let _ = recipeWrapper.recipe.toEntity(context: self.updateContext)
+                    
+                    do {
+                        try self.updateContext.save()
+                    } catch {
+                        self.logger.error("Saving new recipe to Core Data failed: \(String(describing: error))")
+                    }
+                }
+                
+                completion(.success(recipeWrapper.recipe))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
     
     func getCategory(slug: String, completion: @escaping (Category) -> ()) {
 //        NetworkManager.shared.getCategory(slug: slug) { categoryResult in
