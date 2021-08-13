@@ -9,6 +9,7 @@ import Foundation
 import Combine
 
 class CategoryViewModel: ObservableObject, NewRecipeViewModelDelegate {
+    @Published var allowDelete = false
     @Published var category: Category?
     @Published var isLoading = false
     @Published var showNewRecipeButton = false
@@ -19,6 +20,10 @@ class CategoryViewModel: ObservableObject, NewRecipeViewModelDelegate {
         
         if AuthManager.shared.permissions?.createRecipe == true {
             showNewRecipeButton = true
+        }
+        
+        if AuthManager.shared.permissions?.deleteRecipe == true {
+            allowDelete = true
         }
     }
     
@@ -32,6 +37,17 @@ class CategoryViewModel: ObservableObject, NewRecipeViewModelDelegate {
                 self.category = category
                 self.isLoading = false
             }
+        }
+    }
+    
+    func deleteRecipes(at offsets: IndexSet) {
+        if let recipes = category?.recipes {
+            for offset in offsets {
+                let recipe = recipes[offset]
+                DataManager.shared.deleteRecipe(recipe: recipe) { _ in }
+            }
+            
+            category!.recipes!.remove(atOffsets: offsets)
         }
     }
     

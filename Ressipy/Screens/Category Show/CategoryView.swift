@@ -13,7 +13,16 @@ struct CategoryView: View {
     
     var body: some View {
         ZStack {
-            RecipeList(recipes: vm.category?.recipes ?? [])
+            List {
+                ForEach(vm.category?.recipes ?? []) { recipe in
+                    NavigationLink(destination: RecipeView(vm: RecipeViewModel(slug: recipe.slug))) {
+                        Text(recipe.name)
+                    }
+                    .id(recipe.id)
+                }
+                .onDelete(perform: vm.allowDelete ? vm.deleteRecipes : nil)
+            }
+            .listStyle(PlainListStyle())
             
             if vm.isLoading {
                 LoadingView()

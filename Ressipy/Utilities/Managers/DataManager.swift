@@ -42,6 +42,29 @@ class DataManager {
         }
     }
     
+    func deleteRecipe(recipe: Recipe, completion: @escaping (Result<Recipe, NetworkError>) -> ()) {
+        NetworkManager.shared.deleteRecipe(slug: recipe.slug) { deleteResult in
+            switch deleteResult {
+            case .success(let recipeWrapper):
+                self.updateContext.perform {
+                    let deletedRecipeRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Recipe")
+                    deletedRecipeRequest.predicate = NSPredicate(format: "slug = %@", recipeWrapper.recipe.slug)
+                    let deleteRequest = NSBatchDeleteRequest(fetchRequest: deletedRecipeRequest)
+                    
+                    do {
+                        try self.updateContext.execute(deleteRequest)
+                    } catch {
+                        self.logger.error("Failed to delete recipe from Core Data: \(String(describing: error))")
+                    }
+                }
+                
+                completion(.success(recipeWrapper.recipe))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
     func getCategory(slug: String, completion: @escaping (Category) -> ()) {
 //        NetworkManager.shared.getCategory(slug: slug) { categoryResult in
 //            completion(categoryResult.category)

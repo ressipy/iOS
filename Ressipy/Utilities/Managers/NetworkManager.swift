@@ -37,11 +37,11 @@ class NetworkManager {
     
     func createRecipe(recipe: Recipe, completion: @escaping (Result<RecipeWrapper, NetworkError>) -> ()) {
         guard let url = URL(string: baseUrl + "/recipes") else { return }
-        let credentialsWrapper = RecipeWrapper(recipe: recipe)
+        let recipeWrapper = RecipeWrapper(recipe: recipe)
         
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
-        request.httpBody = try! JSONEncoder().encode(credentialsWrapper)
+        request.httpBody = try! JSONEncoder().encode(recipeWrapper)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         makeRequest(request, asType: RecipeWrapper.self, completion: completion)
     }
@@ -55,6 +55,14 @@ class NetworkManager {
         request.httpBody = try! JSONEncoder().encode(credentialsWrapper)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         makeRequest(request, asType: TokenResult.self, completion: completion)
+    }
+    
+    func deleteRecipe(slug: String, completion: @escaping (Result<RecipeWrapper, NetworkError>) -> ()) {
+        guard let url = URL(string: baseUrl + "/recipes/\(slug)") else { return }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "DELETE"
+        makeRequest(request, asType: RecipeWrapper.self, completion: completion)
     }
     
     func getCategory(slug: String, completion: @escaping (Result<CategoryResult, NetworkError>) -> ()) {

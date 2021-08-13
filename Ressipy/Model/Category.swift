@@ -9,9 +9,9 @@ import Foundation
 import CoreData
 
 struct Category: Codable {
-    let name: String
-    let recipes: [Recipe]?
-    let slug: String
+    var name: String
+    var recipes: [Recipe]?
+    var slug: String
 }
 
 extension Category: Identifiable {
