@@ -18,11 +18,11 @@ class RecipeViewModel: ObservableObject {
     
     init(slug: String) {
         self.slug = slug
-        getRecipe()
         
-        if AuthManager.shared.permissions?.updateRecipe == true {
-            self.showEditButton = true
-        }
+        NotificationCenter.default.addObserver(self, selector: #selector(onAuthUpdate), name: .didUpdateAuth, object: nil)
+        
+        getRecipe()
+        setPermissions()
     }
     
     var enumeratedInstructions: [(Int, Instruction)] {
@@ -35,7 +35,9 @@ class RecipeViewModel: ObservableObject {
         showEditForm = true
     }
     
-    func getRecipe() {
+    // MARK: Private functions
+    
+    private func getRecipe() {
         guard !isLoading else { return }
         isLoading = true
         
@@ -45,6 +47,14 @@ class RecipeViewModel: ObservableObject {
             self.recipe = recipe
             self.isLoading = false
         }
+    }
+    
+    @objc private func onAuthUpdate(_: Notification) {
+        setPermissions()
+    }
+    
+    private func setPermissions() {
+        self.showEditButton = AuthManager.shared.permissions?.updateRecipe == true
     }
 }
 

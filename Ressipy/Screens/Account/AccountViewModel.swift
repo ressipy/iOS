@@ -12,7 +12,7 @@ class AccountViewModel: ObservableObject {
     @Published var userEmail: String? = nil
     
     init() {
-        NotificationCenter.default.addObserver(self, selector: #selector(onAuthenticate(_:)), name: .didAuthenticate, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(onAuthUpdate), name: .didUpdateAuth, object: nil)
         
         isLoggedIn = AuthManager.shared.isLoggedIn
         
@@ -21,7 +21,7 @@ class AccountViewModel: ObservableObject {
         }
     }
     
-    @objc func onAuthenticate(_ notification: Notification) {
+    @objc private func onAuthUpdate(_ notification: Notification) {
         isLoggedIn = AuthManager.shared.isLoggedIn
         if isLoggedIn { userEmail = AuthManager.shared.userEmail }
     }

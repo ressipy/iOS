@@ -55,7 +55,7 @@ class AuthManager {
                     self.setPermissions(tokenResult.permissions)
                     self.isLoggedIn = true
                     completion(.success)
-                    NotificationCenter.default.post(name: .didAuthenticate, object: self)
+                    NotificationCenter.default.post(name: .didUpdateAuth, object: self)
                 case .failure(let authenticationError):
                     completion(.failure(authenticationError))
                 }
@@ -79,6 +79,7 @@ class AuthManager {
             removeEmail()
             removePermissions()
             self.isLoggedIn = false
+            NotificationCenter.default.post(name: .didUpdateAuth, object: self)
         }
     }
     

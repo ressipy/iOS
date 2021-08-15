@@ -8,8 +8,11 @@
 import SwiftUI
 
 struct CategoryView: View {
-    let slug: String
-    @StateObject var vm = CategoryViewModel()
+    @ObservedObject var vm: CategoryViewModel
+    
+    init(slug: String) {
+        vm = CategoryViewModel(slug: slug)
+    }
     
     var body: some View {
         ZStack {
@@ -30,9 +33,6 @@ struct CategoryView: View {
         }
         .navigationTitle(vm.category?.name ?? "")
         .navigationBarItems(trailing: vm.showNewRecipeButton ? AnyView(newRecipeButton) : AnyView(EmptyView()))
-        .onAppear {
-            vm.getCategory(slug: slug)
-        }
         .sheet(isPresented: $vm.showNewRecipeForm) {
             NewRecipeView(category: vm.category!, delegate: vm)
         }

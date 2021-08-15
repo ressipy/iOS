@@ -8,36 +8,23 @@
 import Foundation
 import Combine
 
-class CategoryViewModel: ObservableObject, NewRecipeViewModelDelegate {
+class CategoryViewModel: ObservableObject {
     @Published var allowDelete = false
     @Published var category: Category?
     @Published var isLoading = false
     @Published var showNewRecipeButton = false
     @Published var showNewRecipeForm = false
     
-    init() {
-        NotificationCenter.default.addObserver(self, selector: #selector(contextDidSave(_:)), name: Notification.Name.NSManagedObjectContextDidSave, object: nil)
-        
-        if AuthManager.shared.permissions?.createRecipe == true {
-            showNewRecipeButton = true
-        }
-        
-        if AuthManager.shared.permissions?.deleteRecipe == true {
-            allowDelete = true
-        }
-    }
+    var slug: String
     
-    func getCategory(slug: String) {
-        DispatchQueue.main.async {
-            guard !self.isLoading else { return }
-            
-            DataManager.shared.getCategory(slug: slug) { [weak self] category in
-                guard let self = self else { return }
-                
-                self.category = category
-                self.isLoading = false
-            }
-        }
+    init(slug: String) {
+        self.slug = slug
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(contextDidSave), name: .NSManagedObjectContextDidSave, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(onAuthUpdate), name: .didUpdateAuth, object: nil)
+        
+        setPermissions()
+        getCategory()
     }
     
     func deleteRecipes(at offsets: IndexSet) {
@@ -51,22 +38,44 @@ class CategoryViewModel: ObservableObject, NewRecipeViewModelDelegate {
         }
     }
     
-    @objc func contextDidSave(_ notification: Notification) {
-        if let slug = category?.slug {
-            getCategory(slug: slug)
-        }
-    }
-    
-    func didSaveRecipe(_ recipe: Recipe) {
-        if let slug = category?.slug {
-            getCategory(slug: slug)
-        }
-        
-        showNewRecipeForm = false
-    }
-    
     func displayNewRecipeForm() {
         if category == nil { return }
         showNewRecipeForm = true
+    }
+    
+    // MARK: Private functions
+    
+    private func getCategory() {
+        guard !isLoading else { return }
+        isLoading = true
+        
+        DataManager.shared.getCategory(slug: slug) { [weak self] category in
+            guard let self = self else { return }
+            
+            self.category = category
+            self.isLoading = false
+        }
+    }
+    
+    @objc private func contextDidSave(_ notification: Notification) {
+        getCategory()
+    }
+    
+    @objc private func onAuthUpdate(_ notification: Notification) {
+        setPermissions()
+    }
+        
+    private func setPermissions() {
+        showNewRecipeButton = AuthManager.shared.permissions?.createRecipe == true
+        allowDelete = AuthManager.shared.permissions?.deleteRecipe == true
+    }
+}
+
+extension CategoryViewModel: NewRecipeViewModelDelegate {
+    func didSaveRecipe(_ recipe: Recipe) {
+        guard category != nil else { return }
+        
+        getCategory()
+        showNewRecipeForm = false
     }
 }
