@@ -10,6 +10,10 @@ import SwiftUI
 struct RecipeView: View {
     @ObservedObject var vm: RecipeViewModel
     
+    init(slug: String) {
+        vm = RecipeViewModel(slug: slug)
+    }
+    
     var body: some View {
         ScrollView {
             ZStack {
@@ -50,14 +54,24 @@ struct RecipeView: View {
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .navigationTitle(vm.recipe?.name ?? "")
+                .navigationBarItems(trailing: vm.showEditButton ? AnyView(editButton) : AnyView(EmptyView()))
                 
                 if vm.isLoading {
                     LoadingView()
                 }
             }
         }
-        .onAppear {
-            vm.getRecipe()
+        .sheet(isPresented: $vm.showEditForm) {
+            NewRecipeView(recipe: vm.recipe!, delegate: vm)
+        }
+    }
+    
+    var editButton: some View {
+        Button {
+            vm.displayEditForm()
+        } label: {
+            Text("Edit")
+                .foregroundColor(.accentColor)
         }
     }
 }
@@ -65,7 +79,7 @@ struct RecipeView: View {
 struct RecipeView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            RecipeView(vm: RecipeViewModel(slug: "spaghetti"))
+            RecipeView(slug: "spaghetti")
         }
     }
 }

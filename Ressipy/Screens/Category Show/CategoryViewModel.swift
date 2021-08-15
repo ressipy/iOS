@@ -57,7 +57,7 @@ class CategoryViewModel: ObservableObject, NewRecipeViewModelDelegate {
         }
     }
     
-    func didCreateRecipe(_ recipe: Recipe) {
+    func didSaveRecipe(_ recipe: Recipe) {
         if let slug = category?.slug {
             getCategory(slug: slug)
         }

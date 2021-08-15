@@ -14,9 +14,13 @@ struct NewRecipeView: View {
         vm = NewRecipeViewModel(category: category, delegate: delegate)
     }
     
+    init(recipe: Recipe, delegate: NewRecipeViewModelDelegate) {
+        vm = NewRecipeViewModel(recipe: recipe, delegate: delegate)
+    }
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 6) {
-            Text("New Recipe")
+            Text(vm.title)
                 .font(.largeTitle)
                 .fontWeight(.bold)
                 .padding(.horizontal, 20)
@@ -162,9 +166,9 @@ struct NewRecipeView: View {
                     Spacer()
                     
                     Button {
-                        vm.createRecipe()
+                        vm.saveRecipe()
                     } label: {
-                        Text("Add recipe")
+                        Text(vm.buttonText)
                             .font(.title3)
                             .fontWeight(.semibold)
                             .frame(width: 260, height: 50)
@@ -187,7 +191,7 @@ struct NewRecipeView: View {
 }
 
 class PreviewDelegate: NewRecipeViewModelDelegate {
-    func didCreateRecipe(_ recipe: Recipe) {}
+    func didSaveRecipe(_ recipe: Recipe) {}
 }
 
 struct NewRecipeView_Previews: PreviewProvider {

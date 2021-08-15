@@ -11,11 +11,18 @@ import Combine
 class RecipeViewModel: ObservableObject {
     @Published var isLoading = false
     @Published var recipe: Recipe?
+    @Published var showEditButton = false
+    @Published var showEditForm = false
     
     var slug: String
     
     init(slug: String) {
         self.slug = slug
+        getRecipe()
+        
+        if AuthManager.shared.permissions?.updateRecipe == true {
+            self.showEditButton = true
+        }
     }
     
     var enumeratedInstructions: [(Int, Instruction)] {
@@ -23,8 +30,13 @@ class RecipeViewModel: ObservableObject {
         return Array(instructions.enumerated())
     }
     
+    func displayEditForm() {
+        if recipe == nil { return }
+        showEditForm = true
+    }
+    
     func getRecipe() {
-        guard !isLoading, recipe == nil else { return }
+        guard !isLoading else { return }
         isLoading = true
         
         DataManager.shared.getRecipe(slug: slug) { [weak self] recipe in
@@ -33,5 +45,12 @@ class RecipeViewModel: ObservableObject {
             self.recipe = recipe
             self.isLoading = false
         }
+    }
+}
+
+extension RecipeViewModel: NewRecipeViewModelDelegate {
+    func didSaveRecipe(_ recipe: Recipe) {
+        getRecipe()
+        showEditForm = false
     }
 }

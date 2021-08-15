@@ -9,12 +9,12 @@ import CoreData
 import Foundation
 
 struct Recipe: Codable {
-    let author: String?
-    let category: Category?
-    let ingredients: [Ingredient]?
-    let instructions: [Instruction]?
-    let name: String
-    let slug: String
+    var author: String?
+    var category: Category?
+    var ingredients: [Ingredient]?
+    var instructions: [Instruction]?
+    var name: String
+    var slug: String
     
     private enum EncodingKeys: String, CodingKey {
         case author, ingredients, instructions, name

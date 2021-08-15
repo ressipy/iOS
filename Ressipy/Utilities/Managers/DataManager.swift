@@ -89,4 +89,25 @@ class DataManager {
         let recipe = StorageProvider.shared.getRecipe(slug: slug)!
         completion(recipe)
     }
+    
+    func updateRecipe(recipe: Recipe, completion: @escaping (Result<Recipe, NetworkError>) -> ()) {
+        NetworkManager.shared.updateRecipe(recipe: recipe) { recipeResult in
+            switch recipeResult {
+            case .success(let recipeWrapper):
+                self.updateContext.perform {
+                    let _ = recipeWrapper.recipe.toEntity(context: self.updateContext)
+                    
+                    do {
+                        try self.updateContext.save()
+                    } catch {
+                        self.logger.error("Saving updated recipe to Core Data failed: \(String(describing: error))")
+                    }
+                }
+                
+                completion(.success(recipeWrapper.recipe))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
 }

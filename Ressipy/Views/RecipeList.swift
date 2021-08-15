@@ -13,7 +13,7 @@ struct RecipeList: View {
     var body: some View {
         List {
             ForEach(recipes) { recipe in
-                NavigationLink(destination: RecipeView(vm: RecipeViewModel(slug: recipe.slug))) {
+                NavigationLink(destination: RecipeView(slug: recipe.slug)) {
                     Text(recipe.name)
                 }
                 .id(recipe.id)

@@ -91,6 +91,21 @@ class NetworkManager {
         makeRequest(URLRequest(url: url), asType: ImporterResponse.self, completion: completion)
     }
     
+    func updateRecipe(recipe: Recipe, completion: @escaping (Result<RecipeWrapper, NetworkError>) -> ()) {
+        guard let url = URL(string: baseUrl + "/recipes/\(recipe.slug)") else { return }
+        let recipeWrapper = RecipeWrapper(recipe: recipe)
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "PUT"
+        request.httpBody = try! JSONEncoder().encode(recipeWrapper)
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        makeRequest(request, asType: RecipeWrapper.self, completion: completion)
+    }
+    
+    /*
+     MARK: Private functions
+     */
+    
     private func makeRequest<T: Decodable>(_ baseRequest: URLRequest, asType type: T.Type, completion: @escaping (Result<T, NetworkError>) -> ()) {
         var request = baseRequest
         
