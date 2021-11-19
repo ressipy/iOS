@@ -17,7 +17,7 @@ class DataManager {
     private let logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "DataManager")
     
     private init() {
-        updateContext = StorageProvider.shared.persistentContainer.newBackgroundContext()
+        updateContext = StorageProvider.shared.persistentContainer.viewContext
         updateContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
     }
     

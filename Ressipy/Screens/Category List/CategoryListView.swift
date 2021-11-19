@@ -8,19 +8,25 @@
 import SwiftUI
 
 struct CategoryListView: View {
+    @ObservedObject var navigationManager = NavigationManager.shared
     @StateObject var vm = CategoryListViewModel()
+    
+    init() {
+        print("Initializing category list view")
+    }
     
     var body: some View {
         NavigationView {
             ZStack {
                 List {
                     ForEach(vm.categories) { category in
-                        NavigationLink(
-                            destination: CategoryView(slug: category.slug),
-                            label: {
-                                Text(category.name)
-                            })
-                            .id(category.slug)
+                        NavigationLink(destination: NavigationLazyView(CategoryView(slug: category.slug)),
+                                       tag: category.slug,
+                                       selection: $navigationManager.categorySlug) {
+                            Text(category.name)
+                        }
+                        .isDetailLink(false)
+                        .id(category.slug)
                     }
                 }
                 .listStyle(PlainListStyle())

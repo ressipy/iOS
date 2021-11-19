@@ -11,6 +11,7 @@ struct RecipeView: View {
     @ObservedObject var vm: RecipeViewModel
     
     init(slug: String) {
+        print("Opened recipe view for recipe \(slug)")
         vm = RecipeViewModel(slug: slug)
     }
     

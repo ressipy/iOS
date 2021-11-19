@@ -8,17 +8,21 @@
 import SwiftUI
 
 struct CategoryView: View {
+    @ObservedObject var navigationManager = NavigationManager.shared
     @ObservedObject var vm: CategoryViewModel
     
     init(slug: String) {
+        print("Initializing category \(slug). Recipe: \(NavigationManager.shared.recipeSlug ?? "none")")
         vm = CategoryViewModel(slug: slug)
     }
     
     var body: some View {
         ZStack {
             List {
-                ForEach(vm.category?.recipes ?? []) { recipe in
-                    NavigationLink(destination: RecipeView(slug: recipe.slug)) {
+                ForEach(vm.recipes) { recipe in
+                    NavigationLink(destination: NavigationLazyView(RecipeView(slug: recipe.slug)),
+                                   tag: recipe.slug,
+                                   selection: $navigationManager.recipeSlug) {
                         Text(recipe.name)
                     }
                     .id(recipe.id)

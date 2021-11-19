@@ -12,6 +12,7 @@ class CategoryViewModel: ObservableObject {
     @Published var allowDelete = false
     @Published var category: Category?
     @Published var isLoading = false
+    @Published var recipes = [Recipe]()
     @Published var showNewRecipeButton = false
     @Published var showNewRecipeForm = false
     
@@ -22,7 +23,7 @@ class CategoryViewModel: ObservableObject {
         
         NotificationCenter.default.addObserver(self, selector: #selector(contextDidSave), name: .NSManagedObjectContextDidSave, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(onAuthUpdate), name: .didUpdateAuth, object: nil)
-        
+
         setPermissions()
         getCategory()
     }
@@ -50,9 +51,10 @@ class CategoryViewModel: ObservableObject {
         isLoading = true
         
         DataManager.shared.getCategory(slug: slug) { [weak self] category in
-            guard let self = self else { return }
+            guard let self = self, let recipes = category.recipes else { return }
             
             self.category = category
+            self.recipes = recipes
             self.isLoading = false
         }
     }

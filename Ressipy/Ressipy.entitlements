@@ -5,6 +5,7 @@
 	<key>com.apple.developer.associated-domains</key>
 	<array>
 		<string>webcredentials:ressipy.com</string>
+		<string>applinks:ressipy.com</string>
 	</array>
 </dict>
 </plist>
