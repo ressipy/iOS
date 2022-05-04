@@ -59,3 +59,7 @@ extension Recipe {
         return entity
     }
 }
+
+struct RecipeWrapper: Codable {
+    let recipe: Recipe
+}

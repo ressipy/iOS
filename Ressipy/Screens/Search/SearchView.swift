@@ -36,16 +36,17 @@ struct SearchView: View {
                     
                     if vm.showCancel == true {
                         Button(action: {
-                            vm.showCancel = false
-                            vm.searchText = ""
-                            hideKeyboard()
-                            vm.searchResults = []
-                        }, label: {
+                            withAnimation {
+                                vm.showCancel = false
+                                vm.searchText = ""
+                                hideKeyboard()
+                                vm.searchResults = []
+                            }
+                        }) {
                             Text("Cancel")
-                        })
+                        }
                             .padding(.trailing, 20)
                             .transition(.move(edge: .trailing))
-                            .animation(.default)
                     }
                 }
                 

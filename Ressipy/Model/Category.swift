@@ -14,6 +14,14 @@ struct Category: Codable {
     var slug: String
 }
 
+struct CategoryListResult: Decodable {
+    let categories: [Category]
+}
+
+struct CategoryResult: Decodable {
+    let category: Category
+}
+
 extension Category: Identifiable {
     var id: String { return slug }
 }

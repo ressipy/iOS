@@ -23,17 +23,14 @@
 		D799750426C6149E00AC53F4 /* RecipeList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D799750326C6149E00AC53F4 /* RecipeList.swift */; };
 		D7BD0C6C2693A45500BC3648 /* CategoryListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BD0C6B2693A45500BC3648 /* CategoryListViewModel.swift */; };
 		D7BD0C6E2693A8A700BC3648 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BD0C6D2693A8A700BC3648 /* Category.swift */; };
-		D7BD0C702693A98E00BC3648 /* CategoryListResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BD0C6F2693A98E00BC3648 /* CategoryListResult.swift */; };
 		D7BD0C752693AD2F00BC3648 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BD0C742693AD2F00BC3648 /* LoadingView.swift */; };
 		D7BD0C782693AD7400BC3648 /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BD0C772693AD7400BC3648 /* CategoryView.swift */; };
 		D7BD0C7A2693AD8300BC3648 /* CategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BD0C792693AD8300BC3648 /* CategoryViewModel.swift */; };
-		D7BD0C7C2693AE2900BC3648 /* CategoryResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BD0C7B2693AE2900BC3648 /* CategoryResult.swift */; };
 		D7BD0C7E2693B64D00BC3648 /* RecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BD0C7D2693B64D00BC3648 /* RecipeView.swift */; };
 		D7BD0C802693B65500BC3648 /* RecipeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BD0C7F2693B65500BC3648 /* RecipeViewModel.swift */; };
 		D7BD0C822693B66200BC3648 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BD0C812693B66200BC3648 /* Recipe.swift */; };
 		D7BD0C842693C0FA00BC3648 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BD0C832693C0FA00BC3648 /* Ingredient.swift */; };
 		D7BD0C862693C11200BC3648 /* Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BD0C852693C11200BC3648 /* Instruction.swift */; };
-		D7BD0C882693C12A00BC3648 /* RecipeWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BD0C872693C12A00BC3648 /* RecipeWrapper.swift */; };
 		D7BD0C8E2693F2AB00BC3648 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BD0C8D2693F2AB00BC3648 /* DataManager.swift */; };
 		D7E7AFBF26C0BE5300F46AE2 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E7AFBE26C0BE5300F46AE2 /* LoginViewModel.swift */; };
 		D7E7AFC226C0C34300F46AE2 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E7AFC126C0C34300F46AE2 /* Alert.swift */; };
@@ -73,17 +70,14 @@
 		D799750326C6149E00AC53F4 /* RecipeList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeList.swift; sourceTree = "<group>"; };
 		D7BD0C6B2693A45500BC3648 /* CategoryListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListViewModel.swift; sourceTree = "<group>"; };
 		D7BD0C6D2693A8A700BC3648 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
-		D7BD0C6F2693A98E00BC3648 /* CategoryListResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListResult.swift; sourceTree = "<group>"; };
 		D7BD0C742693AD2F00BC3648 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		D7BD0C772693AD7400BC3648 /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
 		D7BD0C792693AD8300BC3648 /* CategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewModel.swift; sourceTree = "<group>"; };
-		D7BD0C7B2693AE2900BC3648 /* CategoryResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryResult.swift; sourceTree = "<group>"; };
 		D7BD0C7D2693B64D00BC3648 /* RecipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeView.swift; sourceTree = "<group>"; };
 		D7BD0C7F2693B65500BC3648 /* RecipeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeViewModel.swift; sourceTree = "<group>"; };
 		D7BD0C812693B66200BC3648 /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
 		D7BD0C832693C0FA00BC3648 /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
 		D7BD0C852693C11200BC3648 /* Instruction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Instruction.swift; sourceTree = "<group>"; };
-		D7BD0C872693C12A00BC3648 /* RecipeWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeWrapper.swift; sourceTree = "<group>"; };
 		D7BD0C8D2693F2AB00BC3648 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		D7E7AFBE26C0BE5300F46AE2 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		D7E7AFC126C0C34300F46AE2 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
@@ -221,14 +215,11 @@
 			isa = PBXGroup;
 			children = (
 				D7BD0C6D2693A8A700BC3648 /* Category.swift */,
-				D7BD0C6F2693A98E00BC3648 /* CategoryListResult.swift */,
-				D7BD0C7B2693AE2900BC3648 /* CategoryResult.swift */,
 				D7E7AFC526C0CD3B00F46AE2 /* Credentials.swift */,
 				D7BD0C832693C0FA00BC3648 /* Ingredient.swift */,
 				D7BD0C852693C11200BC3648 /* Instruction.swift */,
 				D7E7AFCC26C216C700F46AE2 /* Permissions.swift */,
 				D7BD0C812693B66200BC3648 /* Recipe.swift */,
-				D7BD0C872693C12A00BC3648 /* RecipeWrapper.swift */,
 				D7E7AFC726C0E2C200F46AE2 /* TokenResult.swift */,
 			);
 			path = Model;
@@ -411,7 +402,6 @@
 				D7E7AFBF26C0BE5300F46AE2 /* LoginViewModel.swift in Sources */,
 				D7E7AFD426C22ED700F46AE2 /* AccountViewModel.swift in Sources */,
 				D7E7AFD926C2F90100F46AE2 /* NewRecipeView.swift in Sources */,
-				D7BD0C882693C12A00BC3648 /* RecipeWrapper.swift in Sources */,
 				D719672F26939C54003544E0 /* RessipyApp.swift in Sources */,
 				D7EA0A6A26B38C410009AFEF /* SearchView.swift in Sources */,
 				D7BD0C6C2693A45500BC3648 /* CategoryListViewModel.swift in Sources */,
@@ -431,7 +421,6 @@
 				D7BD0C752693AD2F00BC3648 /* LoadingView.swift in Sources */,
 				D7E7AFC226C0C34300F46AE2 /* Alert.swift in Sources */,
 				D7E7AFD626C2327A00F46AE2 /* Notification+Ext.swift in Sources */,
-				D7BD0C7C2693AE2900BC3648 /* CategoryResult.swift in Sources */,
 				D7BD0C782693AD7400BC3648 /* CategoryView.swift in Sources */,
 				D7BD0C822693B66200BC3648 /* Recipe.swift in Sources */,
 				D7E7AFCA26C0E94400F46AE2 /* AuthManager.swift in Sources */,
@@ -441,7 +430,6 @@
 				D7E7AFCD26C216C700F46AE2 /* Permissions.swift in Sources */,
 				D7BD0C7A2693AD8300BC3648 /* CategoryViewModel.swift in Sources */,
 				D7E7AFC426C0C47D00F46AE2 /* String+Ext.swift in Sources */,
-				D7BD0C702693A98E00BC3648 /* CategoryListResult.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -499,7 +487,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -554,7 +542,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -576,7 +564,7 @@
 				DEVELOPMENT_TEAM = QQWWMCLZJZ;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Ressipy/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -601,7 +589,7 @@
 				DEVELOPMENT_TEAM = QQWWMCLZJZ;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Ressipy/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
