@@ -11,11 +11,11 @@ import SwiftUI
 struct RessipyApp: App {
     
     init() {
-//        let qos = DataImporter.shared.lastSyncedAt == nil ? DispatchQoS.QoSClass.userInitiated : DispatchQoS.QoSClass.utility
-//
-//        DispatchQueue.global(qos: qos).async {
-//            DataImporter.shared.runImport()
-//        }
+        let qos = DataImporter.shared.lastSyncedAt == nil ? DispatchQoS.QoSClass.userInitiated : DispatchQoS.QoSClass.utility
+
+        DispatchQueue.global(qos: qos).async {
+            DataImporter.shared.runImport()
+        }
     }
     
     var body: some Scene {

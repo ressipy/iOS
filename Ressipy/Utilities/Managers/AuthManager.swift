@@ -34,10 +34,15 @@ class AuthManager {
     
     private init() {
         if let token = getToken() {
-            self.isLoggedIn = true
-            self.token = token
-            self.permissions = getPermissions()
-            self.userEmail = getEmail()
+            if let permissions = getPermissions(),
+               let userEmail = getEmail() {
+                self.isLoggedIn = true
+                self.token = token
+                self.permissions = permissions
+                self.userEmail = userEmail
+            } else {
+                let _ = removeToken()
+            }
         }
     }
     
